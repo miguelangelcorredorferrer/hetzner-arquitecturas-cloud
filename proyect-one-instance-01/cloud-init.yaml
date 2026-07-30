@@ -1,0 +1,16 @@
+#cloud-config
+package_update: true
+packages:
+  - nginx
+
+write_files:
+  - path: /var/www/html/index.html   # en Ubuntu, la ruta por defecto de Nginx es /var/www/html, no /usr/share/nginx/html
+    content: |
+      <html>
+        <head><title>Nivel 1 - Terraform + Hetzner</title></head>
+        <body><h1>Funciona. Nivel 1 desplegado con IaC.</h1></body>
+      </html>
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl start nginx
